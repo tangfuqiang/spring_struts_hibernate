@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+    <package name="index" namespace="/" extends="json-default">
+
+        <interceptors>
+            <interceptor name="loginInterceptor"
+                         class="com.qinshixun.project.interceptor.LoginInterceptor"></interceptor>
+        </interceptors>
+
+
+        <action name="login_check" method="Check" class="com.qinshixun.project.action.LoginAction">
+            <result name="error" type="json">/login.jsp</result>
+        </action>
+
+        <action name="login_pass" method="getUser" class="com.qinshixun.project.action.LoginAction">
+            <interceptor-ref name="loginInterceptor"></interceptor-ref>
+            <result name="success">/WEB-INF/views/UserList.jsp</result>
+            <result name="login">/login.jsp</result>
+        </action>
+        <action name="nextpage" class="com.qinshixun.project.action.LoginAction" method="nextPage">
+            <result name="success">/WEB-INF/views/UserList.jsp</result>
+        </action>
+
+        <action name="removeUser" class="com.qinshixun.project.action.RemoveAction" method="removeUser">
+            <interceptor-ref name="loginInterceptor"></interceptor-ref>
+            <result name="success" type="json">/WEB-INF/views/UserList.jsp</result>
+            <result name="login">/login.jsp</result>
+        </action>
+
+        <action name="queryuser" class="com.qinshixun.project.action.QueryAction" method="queryUser">
+            <interceptor-ref name="loginInterceptor"></interceptor-ref>
+            <result name="error" type="json">/WEB-INF/views/UserList.jsp</result>
+            <result name="login">/login.jsp</result>
+        </action>
+
+        <action name="removequery" class="com.qinshixun.project.action.QueryAction" method="removeQuery">
+            <interceptor-ref name="loginInterceptor"></interceptor-ref>
+            <result name="success" type="json">/WEB-INF/views/queryUser.jsp</result>
+            <result name="login">/login.jsp</result>
+        </action>
+
+        <action name="toquerpage" class="com.qinshixun.project.action.QueryAction" method="toQueryPage">
+            <interceptor-ref name="loginInterceptor"></interceptor-ref>
+            <result name="success">/WEB-INF/views/queryUser.jsp</result>
+            <result name="login">/login.jsp</result>
+        </action>
+
+        <action name="nexquerypage" method="nextQueryPage" class="com.qinshixun.project.action.QueryAction">
+            <result name="success">/WEB-INF/views/queryUser.jsp</result>
+        </action>
+
+        <action name="backoruserlist" class="com.qinshixun.project.action.BackAction" method="backOrToUserlist">
+            <interceptor-ref name="loginInterceptor"></interceptor-ref>
+            <result name="success">/WEB-INF/views/UserList.jsp</result>
+            <result name="login">/login.jsp</result>
+        </action>
+
+        <action name="toaddpage" class="com.qinshixun.project.action.AddUserAction" method="toAddPage">
+            <interceptor-ref name="loginInterceptor"></interceptor-ref>
+            <result name="success">/WEB-INF/views/UserForm.jsp</result>
+            <result name="login">/login.jsp</result>
+        </action>
+
+        <action name="adduser" class="com.qinshixun.project.action.AddUserAction" method="addUser">
+            <interceptor-ref name="loginInterceptor"></interceptor-ref>
+            <result name="success" type="json">/WEB-INF/views/UserForm.jsp</result>
+            <result name="login">/login.jsp</result>
+        </action>
+
+        <action name="queryusername" class="com.qinshixun.project.action.AddUserAction" method="queryUsername">
+            <interceptor-ref name="loginInterceptor"></interceptor-ref>
+            <result name="success" type="json">/WEB-INF/views/UserForm.jsp</result>
+            <result name="login">/login.jsp</result>
+        </action>
+
+        <action name="tochartpage" class="com.qinshixun.project.action.ChartAction" method="toChartPage">
+            <interceptor-ref name="loginInterceptor"></interceptor-ref>
+            <result name="success">/WEB-INF/views/chart.jsp</result>
+            <result name="login">/login.jsp</result>
+        </action>
+
+        <action name="updateuser" class="com.qinshixun.project.action.UpdateAction" method="updateUser">
+            <interceptor-ref name="loginInterceptor"></interceptor-ref>
+            <result name="success" type="json">/WEB-INF/views/UserList.jsp</result>
+            <result name="login">/login.jsp</result>
+        </action>
+
+    </package>
+</struts>
